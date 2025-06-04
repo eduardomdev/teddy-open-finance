@@ -1,9 +1,14 @@
-import { withModuleFederation } from '@nx/module-federation/angular';
-import config from './module-federation.config';
+import { ModuleFederationConfig } from '@nx/module-federation';
 
-/**
- * DTS Plugin is disabled in Nx Workspaces as Nx already provides Typing support for Module Federation
- * The DTS Plugin can be enabled by setting dts: true
- * Learn more about the DTS Plugin here: https://module-federation.io/configure/dts.html
- */
-export default withModuleFederation(config, { dts: false });
+const clientesUrl = process.env.NX_PUBLIC_CLIENTES_URL || 'http://localhost:4201';
+const selecionadosUrl = process.env.NX_PUBLIC_SELECIONADOS_URL || 'http://localhost:4202';
+
+const config: ModuleFederationConfig = {
+  name: 'teddy-finance',
+  remotes: [
+    ['clientes', `${clientesUrl}/remoteEntry.js`],
+    ['clientes_selecionados', `${selecionadosUrl}/remoteEntry.js`],
+  ],
+};
+
+export default config;
