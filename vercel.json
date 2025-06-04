@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "buildCommand": "npx nx build teddy-finance",
+  "outputDirectory": "dist/apps/teddy-finance",
+  "rewrites": [
+    {
+      "source": "/clientes/(.*)",
+      "destination": "/"
+    },
+    {
+      "source": "/clientes-selecionados/(.*)",
+      "destination": "/"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ]
+}
